@@ -16,6 +16,9 @@ function AppLayout() {
                     <NavLink to="/tasks" style={active}>
                         Tâches
                     </NavLink>
+                    <NavLink to="/login" style={active}>
+                        Se connecter
+                    </NavLink>
                 </nav>
             </header>
             <main>
