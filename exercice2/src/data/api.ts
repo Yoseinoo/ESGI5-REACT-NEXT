@@ -10,3 +10,15 @@ export async function getTasks() {
             throw error;
         });
 }
+
+export async function login(email: string, password: string) {
+    return axios.post(`${API_URL}/login`, {
+        email: email,
+        password: password
+    })
+    .then((response) => response.data)
+    .catch((error) => {
+        console.error(error);
+        throw error;
+    })
+}
