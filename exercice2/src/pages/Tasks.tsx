@@ -1,10 +1,16 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { getTasks } from "../data/api";
 
 function Tasks() {
-    const tasks = [
-        { id: "1", title: "Lire la doc React" },
-        { id: "2", title: "Installer React Router" },
-    ];
+    const [tasks, setTasks] = useState([]);
+
+    useEffect(() => {
+        getTasks()
+            .then((data) => setTasks(data))
+            .catch((error) => console.error("Failed to fetch tasks:", error));
+    }, [])
+
     return (
         <div>
             <ul>
