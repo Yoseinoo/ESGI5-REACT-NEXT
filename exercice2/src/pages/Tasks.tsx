@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { Link, redirect, useNavigate } from "react-router-dom";
-import { getTasks } from "../data/api";
+import { Link, useNavigate } from "react-router-dom";
+import { createTask, getTasks } from "../data/api";
 import { useAuthContext } from "../contexts/AuthProvider";
 
 function Tasks() {
@@ -16,12 +16,19 @@ function Tasks() {
     }, [navigate, token]);
 
     const [tasks, setTasks] = useState([]);
+    const [taskTitle, setTaskTitle] = useState("");
 
     useEffect(() => {
         getTasks()
             .then((data) => setTasks(data))
             .catch((error) => console.error("Failed to fetch tasks:", error));
     }, []);
+
+    const newTask = () => {
+        createTask(taskTitle, token)
+            .then((data) => console.log(data))
+            .catch((error) => console.error("Failed to fetch tasks:", error));
+    }
 
     return (
         <div>
@@ -32,6 +39,9 @@ function Tasks() {
                     </li>
                 ))}
             </ul>
+
+            <input type="text" value={taskTitle} onChange={(e) => setTaskTitle(e.target.value)} />
+            <button onClick={newTask}>create task</button>
         </div>
     );
 }

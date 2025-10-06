@@ -22,3 +22,16 @@ export async function apiLogin(email: string, password: string) {
         throw error;
     })
 }
+
+export async function createTask(title: string, token: string|null) {
+    return axios.post(`${API_URL}/tasks`, 
+        {
+            title: title,
+        },
+        {
+            headers: {
+                'Authorization': 'Bearer ' + token
+            }
+        }
+    )
+}
