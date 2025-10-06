@@ -9,7 +9,7 @@ function Tasks() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        console.log(token);
+        //console.log(token);
         if (!token) {
             navigate("/login", { replace: true });
         }
@@ -35,7 +35,7 @@ function Tasks() {
             <ul>
                 {tasks.map((t) => (
                     <li key={t.id}>
-                        <Link to={t.id}>{t.title}</Link>
+                        <Link to={"/tasks/" + t.id + "?title=" + t.title}>{t.title}</Link>
                     </li>
                 ))}
             </ul>
