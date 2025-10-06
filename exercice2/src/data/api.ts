@@ -11,7 +11,7 @@ export async function getTasks() {
         });
 }
 
-export async function login(email: string, password: string) {
+export async function apiLogin(email: string, password: string) {
     return axios.post(`${API_URL}/login`, {
         email: email,
         password: password

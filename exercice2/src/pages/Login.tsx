@@ -1,24 +1,21 @@
 import { useState } from "react";
-import { login as apilogin } from "../data/api";
-import { setToken } from "../contexts/AuthContext";
+import { useAuthContext } from "../contexts/AuthProvider";
 
 function Login() {
+
+    const { login } = useAuthContext();
     const [email, setEmail] = useState("student@example.com");
     const [password, setPassword] = useState("password");
-    const login = () => {
-        apilogin(email, password)
-        .then((data) =>  {
-            console.log(data.token);
-            setToken(data.token);
-        })
-        .catch((error) => console.error("Failed to login:", error));
+
+    const clickLogin = async () => {
+        await login(email, password);
     }
 
     return (
         <div>
             <input type="email" value={email} onChange={(e) => setEmail(e.target.value)}/>
             <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-            <button onClick={login}>Se connecter</button>
+            <button onClick={clickLogin}>Se connecter</button>
         </div>
     );
 }
