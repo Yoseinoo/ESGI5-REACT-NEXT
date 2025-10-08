@@ -1,7 +1,12 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  images: {
+    domains: [
+      'images.openfoodfacts.org', // add the OpenFoodFacts domain
+      'static.openfoodfacts.org', // some URLs may come from here
+    ],
+  },
 };
 
 export default nextConfig;
